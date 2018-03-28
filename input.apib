@@ -1,0 +1,136 @@
+FORMAT: 1A
+
+# API DOC
+
+"Articles" is a simple API to get list of articles and they authors
+
+# Group Articles
+
+## Articles Collection [/api/articles]
+
+### List all Articles [GET]
+
++ Response 200 (application/json)
+  + Body  
+    [
+      {
+        "type":
+        "articles",
+        "id":1,
+        "attributes": {
+          "title":"Ut quam corporis corrupti.",
+          "text":"Quaerat neque error. Fuga ut voluptatem ducimus quia facilis. Quibusdam reprehenderit quia tempore. Id velit repellendus ut optio harum maiores. Ipsam tenetur vel.",
+          "created_at":"2016-01-31T10:56:30.879Z"
+        },
+        "relationships":{
+          "author": {
+            "id":1,
+            "name":"Trinity"
+          }
+        }
+      },
+      {
+        "type":
+        "articles",
+        "id":2,
+        "attributes": {
+          "title":"Ut corporis corrupti.",
+          "text":"Quaerat neque error. Fuga ut voluptatem ducimus quia facilis. Quibusdam reprehenderit quia tempore. Id velit repellendus ut optio harum maiores. Ipsam tenetur vel.",
+          "created_at":"2016-01-31T10:56:30.879Z"
+        },
+        "relationships":{
+          "author": {
+            "id":1,
+            "name":"Trinity"
+          }
+        }
+      }
+    ]
+
+## Update Articles [/api/articles/{id}]
+
++ Parameters
+  + id: 1 (number) - An unique identifier of the article.
+
+### Update an article [PUT]
+
++ Request (application/json)
+  + Body
+    {
+      "attributes": {
+        "title":"Ut quam corporis facilis.",
+        "text":"Quaerat neque error. Fuga ut voluptatem ducimus quia facilis. Quibusdam reprehenderit quia tempore. Id velit repellendus ut optio harum maiores. Ipsam tenetur vel."
+      }
+    }
+
++ Response 200 (application/json)
+  + Body
+    {
+      "type":
+      "articles",
+      "id":1,
+      "attributes": {
+        "title":"Ut quam corporis facilis.",
+        "text":"Quaerat neque error. Fuga ut voluptatem ducimus quia facilis. Quibusdam reprehenderit quia tempore. Id velit repellendus ut optio harum maiores. Ipsam tenetur vel.",
+        "created_at":"2016-01-31T10:56:30.879Z"
+      },
+      "relationships":{
+        "author": {
+          "type":"companies",
+          "id":1,
+          "name":"JetRuby"
+        }
+      }
+    }
+
+## Create Articles [/api/articles]
+
+### Create an article [POST]
+
++ Request (application/json)
+  + Body
+    {
+      "type": "articles",
+      "attributes": {
+        "title":"Ut quam corporis corrupti.",
+        "text":"Quaerat neque error. Fuga ut voluptatem ducimus quia facilis. Quibusdam reprehenderit quia tempore. Id velit repellendus ut optio harum maiores. Ipsam tenetur vel.",
+        "created_at":"2016-01-31T10:56:30.879Z"
+      },
+      "relationships":{
+        "author": {
+          "id":1 
+        }
+      }
+    }
+
++ Response 200 (application/json)
+  + Body
+    {
+      "type": "articles",
+      "id": 5,
+      "attributes": {
+        "title":"Ut quam corporis corrupti.",
+        "text":"Quaerat neque error. Fuga ut voluptatem ducimus quia facilis. Quibusdam reprehenderit quia tempore. Id velit repellendus ut optio harum maiores. Ipsam tenetur vel.",
+        "created_at":"2016-01-31T10:56:30.879Z"
+      },
+      "relationships":{
+        "author": {
+          "id":1,
+          "name":"Trinity"
+        }
+      }
+    }
+
+## Delete Articles [/api/articles/{id}]
+
++ Parameters
+  + id: 1 (number) - An unique identifier of the article.
+
+### Delete an article [DELETE]
+
++ Response 200 (application/json)
+  + Body
+    { 
+      "success": true,
+      "message": "Article successfully deleted"
+    }
